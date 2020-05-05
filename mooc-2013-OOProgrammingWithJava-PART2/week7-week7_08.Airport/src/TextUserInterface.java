@@ -57,9 +57,9 @@ public class TextUserInterface {
         String id;
         int capacity;
         
-        System.out.println("Give plane ID: ");
-        id = reader.nextLine();
-        System.out.println("Give plane capacity: ");
+        System.out.print("Give plane ID: ");
+        id = reader.next();
+        System.out.print("Give plane capacity: ");
         capacity = reader.nextInt();
         
         Plane plane = new Plane(id, capacity);
@@ -72,12 +72,12 @@ public class TextUserInterface {
         String destination;
         Plane plane;
         
-        System.out.println("Give plane ID: ");
-        id = reader.nextLine();
-        System.out.println("Give plane departure code: ");
-        departure = reader.nextLine();
-        System.out.println("Give plane destination code: ");
-        destination = reader.nextLine();
+        System.out.print("Give plane ID: ");
+        id = reader.next();
+        System.out.print("Give departure airport code: ");
+        departure = reader.next();
+        System.out.print("Give destination airport code: ");
+        destination = reader.next();
         
         plane = findPlane(id);
         
@@ -102,7 +102,66 @@ public class TextUserInterface {
         String operation;
         
         System.out.println("Flight service\n--------------------\n");
+        while (true) {
+            System.out.print("Choose operation:\n" +
+                                "[1] Print planes\n" +
+                                "[2] Print flights\n" +
+                                "[3] Print plane info\n" +
+                                "[x] Quit\n" +
+                                "> ");
+            operation = reader.nextLine();
+            
+            if (operation.equals("1")) {
+                printPlanes();
+            }
+            else if (operation.equals("2")) {
+                printFlights();
+            }
+            else if (operation.equals("3")) {
+                printPlaneInfo();
+            }
+            else if (operation.equals("x")) {
+                break;
+            }
+            else {
+                System.out.println("Invalid operation!\n");
+            } 
+        }
     }
     
+    private void printPlanes() {
+        for (Plane plane : planes) {
+            System.out.println(plane.getID() + " (" + String.valueOf(plane.getCapacity()) + " ppl)");
+        }
+    }
+    
+    private void printFlights() {
+        ArrayList<Flight> flights;
+        
+        for (Plane plane : planes) {
+            flights = plane.getFlights();
+            
+            for (Flight flight : flights) {
+                System.out.println(plane.getID() + " (" + String.valueOf(plane.getCapacity()) + " ppl) (" + flight.getDeparture() + "-" + flight.getDestination() + ")");
+            }
+        }
+    }
+    
+    private void printPlaneInfo() {
+        String id;
+        Plane plane;
+        
+        System.out.print("Give plane ID: ");
+        id = reader.nextLine();
+        
+        plane = findPlane(id);
+        
+        if (plane != null) {
+            System.out.println(plane.getID() + " (" + String.valueOf(plane.getCapacity()) + " ppl)");
+        }
+        else {
+            System.out.print("Invalid ID!\n");
+        }
+    }
     
 }

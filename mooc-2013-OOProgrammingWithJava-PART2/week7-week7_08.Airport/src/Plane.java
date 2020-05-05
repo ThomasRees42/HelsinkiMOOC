@@ -34,4 +34,8 @@ public class Plane {
         Flight flight = new Flight(departure, destination);
         flights.add(flight);
     }
+    
+    public ArrayList<Flight> getFlights() {
+        return this.flights;
+    }
 }
