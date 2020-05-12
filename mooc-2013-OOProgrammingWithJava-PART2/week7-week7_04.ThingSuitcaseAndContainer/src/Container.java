@@ -36,6 +36,7 @@ public class Container {
         return total;
     }
     
+    
     public String toString() {
         //"x suitcases (y kg)"
         String str = sizeString() + " (" + totalWeight() + " kg)";

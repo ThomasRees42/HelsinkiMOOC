@@ -27,8 +27,7 @@ public class Thing {
     
     @Override
     public String toString() {
-        String str = (this.name + " (" + this.weight + " Kg)");
-        return str;
+        return name + " (" + weight + " Kg)";
     }
     
     
